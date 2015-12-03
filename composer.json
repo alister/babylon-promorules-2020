@@ -1,0 +1,19 @@
+{
+    
+    "autoload": {
+        "psr-4": {
+            "Alister\\Babylon\\Cart\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alister\\Test\\": "tests/"
+        }
+    },
+    "require": {
+        "mathiasverraes/money": "dev-nextrelease"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    }
+}
