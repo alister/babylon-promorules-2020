@@ -62,6 +62,8 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
     /**
      * When buying more than £60, deduct 10% (BUT first has item discount)
      *
+     * Check as we go as well.
+     * 
      * @return [type] [description]
      */
     public function testSpecialPriceWithItemDiscounts()
@@ -94,5 +96,6 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
 
         $expectedAfterDiscounts = Money::GBP(7376); // (850+850+4500+1995) - 10%
         $this->assertEquals($cost, $expectedAfterDiscounts);
+        // @todo prefer to round down pennies
     }
 }
