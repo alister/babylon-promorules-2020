@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- http://www.phpunit.de/manual/current/en/appendixes.configuration.html -->
+
+<!-- colors = "false"  # requires functionality breaking phpunit 4.7 -->
+<phpunit
+    backupGlobals               = "false"
+    backupStaticAttributes      = "false"
+    bootstrap                   = "vendor/autoload.php"
+    convertErrorsToExceptions   = "true"
+    convertNoticesToExceptions  = "true"
+    convertWarningsToExceptions = "true"
+    processIsolation            = "false"
+    stopOnFailure               = "false"
+    syntaxCheck                 = "true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    checkForUnintentionallyCoveredCode="true"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutTestSize="true"
+    verbose="true"
+>
+
+    <php>
+        <ini name="memory_limit" value="-1" />
+
+        <!-- http://www.kraken.no/blog/2013/04/22/phpunit-speedups/ -->
+        <ini name="xdebug.default_enable" value="1" />
+        <ini name="xdebug.enable_coverage" value="1" />
+        <ini name="xdebug.overload_var_dump" value="0" />
+        <ini name="xdebug.remote_autostart" value="0" />
+        <ini name="xdebug.remote_enable" value="0" />
+        <ini name="xdebug.show_mem_delta" value="0" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>./src/</directory>
+            <exclude>./tests/</exclude>
+            <exclude>./vendor/</exclude>
+    	</testsuite>
+    </testsuites>
+
+    <filter>
+        <blacklist>
+            <directory>./build/</directory>
+            <directory>./tests</directory>
+            <directory>./vendor/</directory>
+        </blacklist>
+
+        <whitelist>
+            <directory>./src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" charset="UTF-8" target="./build/coverage" title="CA.Symfony" />
+        <!-- <log type="coverage-clover" target="./build/logs/clover.xml" />
+        <log type="coverage-crap4j" target="./build/logs/crap4j.xml"/>
+        <log type="junit" target="./build/logs/junit.xml" logIncompleteSkipped="false" />
+        <log type="coverage-xml" target="./build/logs/coverage/xml"/> -->
+    </logging>
+
+    <groups>
+        <include/>
+        <exclude>
+            <group>testRoutesAre200Ok</group>
+            <group>huge</group>
+        </exclude>
+    </groups>
+
+</phpunit>

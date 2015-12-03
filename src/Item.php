@@ -19,7 +19,7 @@ class Item
 
     public function __construct($id, $name, Money $cost)
     {
-        $this->id = $id;
+        $this->id   = $id;
         $this->name = $name;
         $this->cost = $cost;
     }

@@ -7,8 +7,6 @@ use Money\Money;
 
 /**
  * RulesTest
- *
- * @group group
  */
 class RulesTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +26,7 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $cart[] = $item;
         $cart[] = $item;  // 2nd item
 
-        $cost = $this->rules->lavenderHeartReduced($cart, Money::GBP(0));
+        $cost = $this->rules->lavenderHeartReduced($item, $cart, Money::GBP(0));
         $costReducedLavHeart = Money::GBP(850);
 
         $this->assertEquals($cost, $costReducedLavHeart);
