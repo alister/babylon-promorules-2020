@@ -19,6 +19,11 @@ class Checkout implements Checkoutable
         $this->rules = $promoRules;
     }
 
+    public function cartItems()
+    {
+        return $this->cart;
+    }
+
     /**
      * accumulate items in the cart
      *

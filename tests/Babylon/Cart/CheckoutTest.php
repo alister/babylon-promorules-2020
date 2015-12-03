@@ -15,12 +15,14 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->c = new Checkout(new Rules());
+        $this->rules = new Rules();
+        $this->c = new Checkout($this->rules);
     }
 
     public function testCanCreate()
     {
         $this->assertInstanceOf('Alister\Babylon\Cart\Checkout', $this->c);
+        $this->assertEmpty($this->c->cartItems());
     }
 
     public function testScanItem()
@@ -30,10 +32,13 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
         $this->c->scan($item);
     }
 
-    public function testSimpleTotalCost($value='')
+    public function testSimpleTotalCost()
     {
         $costLavHeart = Money::GBP(925);
         $item = new Item('001', 'Lavender heart', $costLavHeart);
+        $this->c->scan($item);
+
+        $this->assertCount(1, $this->c->cartItems());
 
         $this->assertEquals(
             $this->c->total(),

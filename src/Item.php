@@ -9,13 +9,14 @@ use Money\Money;
 class Item
 {
     /** @var string */
-    private $id;
+    public $id;
 
     /** @var string */
-    private $name;
+    public $name;
 
     /** @var Money */
-    private $cost;
+    public $cost;
+
     public function __construct($id, $name, Money $cost)
     {
         $this->id = $id;
