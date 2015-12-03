@@ -36,6 +36,10 @@ class Rules
 
     public function CartValueGt60($cart, Money $totalCost)
     {
+        $discount10Pc = Money::GBP(6000);
+        if ($totalCost->greaterThan($discount10Pc)) {
+            return $totalCost->multiply(0.9); // 10% off, paying only 90%
+        }
         return $totalCost;
     }
 
