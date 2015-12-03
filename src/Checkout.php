@@ -4,10 +4,17 @@ namespace Alister\Babylon\Cart;
 /**
 * 
 */
-class Checkout
+class Checkout implements Checkoutable
 {
-    function __construct()
+    function __construct(Rules $promoRules)
     {
-        # code...
+    }
+
+    public function scan(Item $item) 
+    {
+    }
+
+    public function total()
+    {
     }
 }
