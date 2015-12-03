@@ -17,6 +17,11 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $this->rules = new Rules();
     }
 
+    /**
+     * When buying 2 'Lavender heart's, you pay less for them.
+     *
+     * @return [type] [description]
+     */
     public function testTwoReducedItems()
     {
         $item = new Item('001', 'Lavender heart', Money::GBP(925));
@@ -24,11 +29,8 @@ class RulesTest extends \PHPUnit_Framework_TestCase
         $cart[] = $item;  // 2nd item
 
         $cost = $this->rules->lavenderHeartReduced($cart, Money::GBP(0));
-        $costReducedLavHeart = Money::GBP(850)
+        $costReducedLavHeart = Money::GBP(850);
 
-        $this->assertEquals(
-            $this->c->total(),
-            $costLavHeart
-        );
+        $this->assertEquals($cost, $costReducedLavHeart);
     }
 }
