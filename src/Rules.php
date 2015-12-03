@@ -41,7 +41,7 @@ class Rules
 
     public function lavenderHeartReduced(Item $item, array $cart, Money $totalCost)
     {
-        if ($item->id !== '001') {
+        if (! $item->equals('001')) {
             // does not not deal with a Lavender Heart
             return null;
         }
@@ -49,7 +49,7 @@ class Rules
         $countOfLHs = 0;
         $costOfLH = Money::GBP(0);  // not sure we have any yet
         foreach ($cart as $cartHasItem) {
-            if ('001' == $cartHasItem->id) {
+            if ($cartHasItem->equals('001')) {
                 $countOfLHs ++;
                 $costOfLH = $cartHasItem->cost;
             }

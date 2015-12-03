@@ -17,6 +17,11 @@ class Item
     /** @var Money */
     public $cost;
 
+    public function equals($idValue)
+    {
+        return $this->id === $idValue;
+    }
+
     public function __construct($id, $name, Money $cost)
     {
         $this->id   = $id;

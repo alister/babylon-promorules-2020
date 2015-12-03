@@ -17,7 +17,7 @@ if [ -z "$TEST" ]; then
 fi
 
 VERBOSE="--verbose  "   # --debug --testdox
-#COVERAGE="--coverage-html=build/coverage"
+COVERAGE="--coverage-html=build/coverage"
 COLORS="--colors"
 # config run by default, includes bootstrap
 CONF=" -d memory_limit=1024M"
