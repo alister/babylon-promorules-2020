@@ -1,0 +1,5 @@
+parameters:
+    autoload_files:
+        - phpunit
+
+    level: 5
