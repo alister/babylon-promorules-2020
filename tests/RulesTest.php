@@ -1,26 +1,28 @@
 <?php
-namespace Alister\Test\Babylon\Cart;
+namespace Alister\Test;
 
 use Alister\Babylon\Cart\Rules;
 use Alister\Babylon\Cart\Item;
 use Money\Money;
+use PHPUnit\Framework\TestCase;
 
 /**
  * RulesTest
  */
-class RulesTest extends \PHPUnit_Framework_TestCase
+class RulesTest extends TestCase
 {
-    public function setUp()
+    /** @var \Alister\Babylon\Cart\Rules */
+    private $rules;
+
+    public function setUp(): void
     {
         $this->rules = new Rules();
     }
 
     /**
      * When buying 2 'Lavender heart's, you pay less for them.
-     *
-     * @return [type] [description]
      */
-    public function testTwoReducedItems()
+    public function testTwoReducedItems(): void
     {
         $item = new Item('001', 'Lavender heart', Money::GBP(925));
         $cart[] = $item;
@@ -34,10 +36,8 @@ class RulesTest extends \PHPUnit_Framework_TestCase
 
     /**
      * When buying more than £60, deduct 10%
-     *
-     * @return [type] [description]
      */
-    public function testMoreThanTotal60()
+    public function testMoreThanTotal60(): void
     {
         $item001 = new Item('001', 'Lavender heart', Money::GBP(925));
         $item002 = new Item('002', 'Personalised cufflinks', Money::GBP(4500));

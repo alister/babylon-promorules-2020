@@ -17,7 +17,7 @@ class Item
     /** @var Money */
     public $cost;
 
-    public function equals($idValue)
+    public function equals($idValue): bool
     {
         return $this->id === $idValue;
     }

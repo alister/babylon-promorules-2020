@@ -1,29 +1,35 @@
 <?php
-namespace Alister\Test\Babylon\Cart;
+namespace Alister\Test;
 
 use Alister\Babylon\Cart\Checkout;
 use Alister\Babylon\Cart\Rules;
 use Alister\Babylon\Cart\Item;
 use Money\Money;
+use PHPUnit\Framework\TestCase;
 
 /**
  * CheckoutTest
  */
-class CheckoutTest extends \PHPUnit_Framework_TestCase
+class CheckoutTest extends TestCase
 {
-    public function setUp()
+    /** @var \Alister\Babylon\Cart\Checkout */
+    private $c;
+    /** @var \Alister\Babylon\Cart\Rules */
+    private $rules;
+
+    public function setUp(): void
     {
         $this->rules = new Rules();
         $this->c = new Checkout($this->rules);
     }
 
-    public function testCanCreate()
+    public function testCanCreate(): void
     {
         $this->assertInstanceOf('Alister\Babylon\Cart\Checkout', $this->c);
         $this->assertEmpty($this->c->cartItems());
     }
 
-    public function testScanItem()
+    public function testScanItem(): void
     {
         $costLavHeart = Money::GBP(925);
         $item = new Item('001', 'Lavender heart', $costLavHeart);
@@ -31,7 +37,7 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $this->c->cartItems());
     }
 
-    public function testSimpleTotalCost()
+    public function testSimpleTotalCost(): void
     {
         $costLavHeart = Money::GBP(925);
         $item = new Item('001', 'Lavender heart', $costLavHeart);
@@ -45,7 +51,7 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testTwoItemSimple()
+    public function testTwoItemSimple(): void
     {
         $item003 = new Item('003', 'Kids T-shirt', Money::GBP(1995));
         $this->c->scan($item003);
@@ -63,10 +69,8 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
      * When buying more than £60, deduct 10% (BUT first has item discount)
      *
      * Check as we go as well.
-     * 
-     * @return [type] [description]
      */
-    public function testSpecialPriceWithItemDiscounts()
+    public function testSpecialPriceWithItemDiscounts(): void
     {
         $item001 = new Item('001', 'Lavender heart', Money::GBP(925));
         $item002 = new Item('002', 'Personalised cufflinks', Money::GBP(4500));

@@ -1,43 +1,38 @@
 <?php
 namespace Alister\Babylon\Cart;
 
-/**
-* 
-*/
+use Money\Money;
+
 class Checkout implements Checkoutable
 {
-    /**
-     * @var Item[]
-     */
+    /** @var Item[] */
     private $cart;
-
+    /** @var Rules */
     private $rules;
-    private $rulesHaveRun = false;
 
-    function __construct(Rules $promoRules)
+    public function __construct(Rules $promoRules)
     {
         $this->rules = $promoRules;
     }
 
-    public function cartItems()
+    /**
+     * @return \Alister\Babylon\Cart\Item[]|array
+     */
+    public function cartItems(): ?array
     {
         return $this->cart;
     }
 
     /**
      * accumulate items in the cart
-     *
-     * @param Item $item [description]
-     *
-     * @return self
      */
-    public function scan(Item $item) 
+    public function scan(Item $item): self
     {
         $this->cart[] = $item;
         return $this;
     }
 
-    public function total()
+    public function total(): Money
     {
         return $this->rules->runForPrice($this->cart);
     }

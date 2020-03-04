@@ -16,15 +16,15 @@ if [ -z "$TEST" ]; then
     TEST="./tests/"
 fi
 
-VERBOSE="--verbose  "   # --debug --testdox
+VERBOSE="--verbose  --testdox "   # --debug
 COVERAGE="--coverage-html=build/coverage"
 COLORS="--colors"
 # config run by default, includes bootstrap
 CONF=" -d memory_limit=1024M"
-GROUPEXCLUDE=" --exclude-group done"    # don't run these groups
+#GROUPEXCLUDE=" --exclude-group done"    # don't run these groups
 
 # Use the phpunit brought in by Composer
-PHPUNIT="vendor/bin/phpunit"
+PHPUNIT="php -f phpunit -- "
 
 time \
   $PHPUNIT $CONF $GROUP $GROUPEXCLUDE $COLORS $VERBOSE $MORE $MORE2 $COVERAGE $TEST

@@ -1,14 +1,16 @@
 <?php
 namespace Alister\Test;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * sanityTest
  *
  * @group done
  */
-class sanityTest extends \PHPUnit_Framework_TestCase
+class SanityTest extends TestCase
 {
-    public function testSanity()
+    public function testSanity(): void
     {
         $this->assertTrue(true);
     }

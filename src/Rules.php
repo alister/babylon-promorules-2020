@@ -3,9 +3,6 @@ namespace Alister\Babylon\Cart;
 
 use Money\Money;
 
-/**
-*
-*/
 class Rules
 {
     /**
@@ -13,12 +10,8 @@ class Rules
      * current item.
      *
      * If it returns NULL, it will try the next item in the list
-     *
-     * @param Item $item [description]
-     *
-     * @return [type] [description]
      */
-    public function getRules()
+    public function getRules(): array
     {
         return array(
             [$this, 'lavenderHeartReduced'],
@@ -27,19 +20,19 @@ class Rules
         );
     }
 
-    public function getRulesFinal()
+    public function getRulesFinal(): array
     {
         return array(
             'over60' => [$this, 'CartValueGt60'],
         );
     }
 
-    public function defaultPrice(Item $item, $cart, Money $totalCost)
+    public function defaultPrice(Item $item, array $cart, Money $totalCost): Money
     {
         return $item->cost;
     }
 
-    public function lavenderHeartReduced(Item $item, array $cart, Money $totalCost)
+    public function lavenderHeartReduced(Item $item, array $cart, Money $totalCost): ?Money
     {
         if (! $item->equals('001')) {
             // does not not deal with a Lavender Heart
@@ -63,7 +56,7 @@ class Rules
         return $costOfLH;
     }
 
-    public function CartValueGt60(array $cart, Money $totalCost)
+    public function CartValueGt60(array $cart, Money $totalCost): Money
     {
         $discount10Pc = Money::GBP(6000);
         if ($totalCost->greaterThan($discount10Pc)) {
@@ -74,18 +67,15 @@ class Rules
     }
 
     /**
-     * [runForPrice description]
-     *
-     * @param Items[] $cart
+     * @param Item[] $cart
      *
      * @return Money total price of cart
      */
-    public function runForPrice(array $cart)
+    public function runForPrice(array $cart): Money
     {
         $totalCost = Money::GBP(0);
 
         $loopingCart = array_keys($cart);
-        $loop = 0;
         foreach ($loopingCart as $k) {
             foreach($this->getRules() as $ruleFunction) {
                 $t = $ruleFunction($cart[$k], $cart, $totalCost);
