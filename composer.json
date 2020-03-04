@@ -1,5 +1,4 @@
 {
-    
     "autoload": {
         "psr-4": {
             "Alister\\Babylon\\Cart\\": "src/"
@@ -11,9 +10,7 @@
         }
     },
     "require": {
-        "mathiasverraes/money": "dev-nextrelease"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.0"
+        "php": "^7.3",
+        "moneyphp/money": "^3.3"
     }
 }
